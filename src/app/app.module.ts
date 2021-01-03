@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FeaturesModule } from './features/features.module';
+import { AppRoutingModule } from './app-routing.module';
+import { MatModule } from './mat.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -10,7 +14,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FeaturesModule,
+    AppRoutingModule,
+    MatModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
