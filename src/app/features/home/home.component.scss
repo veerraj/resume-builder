@@ -1,0 +1,681 @@
+.layout {
+	padding: 0px 40px;
+	.flex_space {
+		flex: 1 1 auto;
+	}
+	.full_width {
+		width: 100%;
+	}
+	.header {
+		align-items: flex-start;
+		padding: 20px 0;
+		.header_text {
+			font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+			font-weight: 400;
+			font-size: 14px;
+			color: #33475b;
+			line-height: 24px;
+		}
+	}
+	.body {
+		
+		.stepper {
+			flex-grow: 1;
+			margin: 30px auto 0px;
+			width: 100%;
+			max-width: 1000px;
+			padding: 0;
+			.stepper_body {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				.stepper_header {
+					font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+					font-weight: 600;
+					color: #33475b;
+					margin-top: 0px;
+					font-size: 20px;
+					width: 100%;
+				}
+				.step-1 {
+					width: 100%;
+					max-width: 700PX;
+					.margin-bottom-10 {
+						margin-bottom: 10px;
+					}
+					.metting_details {
+						padding-top: 20px;
+						display: flex;
+						flex-direction: row;
+						align-items: center;
+						.user_pic {
+							width: 130px;
+							align-items: center;
+							img {
+								width: 72px;
+								height: 72px;
+								overflow: hidden;
+								border-radius: 50%;
+								display: block;
+							}
+							.img_text {
+								margin-top: 8px;
+								color: #b0c1d4;
+								font-size: 14px;
+								font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+								font-weight: 600;
+							}
+							.active_color {
+								color: #4885ed;
+								cursor: pointer;
+								// &:hover {
+								//     border-bottom: 1px solid #4885ed;
+								// }
+							}
+						}
+						.right_side {
+							margin-left: 20px;
+							width: 100%;
+							.margin-top-30 {
+								margin-top: -30px;
+							}
+							.info_icon {
+								font-size: 14px;
+								margin-left: 5px;
+								color: rgb(124, 152, 182);
+							}
+							.tooltip1 {
+								position: absolute;
+								display: inline-block;
+								top: 10px;
+								right: 5px;
+							}
+							.tooltip1 .tooltiptext1 {
+								border-radius: 3px;
+								font-size: 13px;
+								line-height: 24px;
+								background-color: #425b76;
+								color: #fff;
+								width: 225px;
+								visibility: hidden;
+								font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+								padding: 10px 16px;
+								position: absolute;
+								z-index: 1;
+								bottom: 150%;
+								right: -108px;
+								
+							}
+							.tooltip1 .tooltiptext1::after {
+								content: "";
+								position: absolute;
+								top: 100%;
+								left: 50%;
+								margin-left: -10px;
+								border-width: 8px;
+								border-style: solid;
+								border-color: #425b76 transparent transparent transparent;
+							}
+							.tooltip1:hover .tooltiptext1 {
+								visibility: visible;
+							}
+						}
+					}
+					.margin-top-20 {
+						margin-top: -20px;
+					}
+					.margin-top-40 {
+						margin-top: -40px;
+					}
+					.questions_input {
+						align-items: flex-end;
+						margin-top:5px;
+					}
+					.info_icon {
+						font-size: 14px;
+						margin-left: 5px;
+						color: rgb(124, 152, 182);
+					}
+					.tooltip_header {
+						font-size: 14px;
+						font-weight: 600;
+						margin-bottom: 15px;;
+					}
+					.tooltip_content {
+						line-height: 18px;
+						span {
+							font-weight: 600;
+						}
+					}
+					
+					.tooltip1 {
+						position: absolute;
+						display: inline-block;
+						top: 10px;
+						right: 5px;
+					}
+					.tooltip2 {
+						position: absolute;
+						display: inline-block;
+						top: 10px;
+						right: unset;
+						left: 55px;
+					}
+					.tooltip1 .tooltiptext1 {
+						border-radius: 3px;
+						font-size: 13px;
+						line-height: 24px;
+						background-color: #425b76;
+						color: #fff;
+						width: 225px;
+						visibility: hidden;
+						font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+						padding: 10px 16px;
+						position: absolute;
+						z-index: 1;
+						bottom: 150%;
+						right: -108px;
+					}
+					.tooltip1 .tooltiptext1::after {
+						content: "";
+						position: absolute;
+						top: 100%;
+						left: 50%;
+						margin-left: -10px;
+						border-width: 8px;
+						border-style: solid;
+						border-color: #425b76 transparent transparent transparent;
+					}
+					.tooltip1:hover .tooltiptext1 {
+						visibility: visible;
+					}
+					.link_label {
+						min-width: 50%;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+						overflow: hidden;
+						display: block;
+					}
+					.link_label1 {
+						min-width: 50%;
+						overflow: hidden;
+						display: block;
+						padding: 0;
+						line-height: 20px;
+					}
+					.hr_input {
+						width: 69px;
+					}
+					.width_150 {
+						width: 150px;
+					}
+					.hr_text {
+						margin-left: 10px;
+					}
+
+					
+					
+					.delete_time_icon {
+						color: rgb(0, 164, 189);
+						font-size: 24px;
+						margin-top: 5px;
+						cursor: pointer;
+					}
+					.add_time {
+						font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+						font-weight: 600;
+						color: #4885ed;
+						font-size: 16px;
+						cursor: pointer;
+					}
+					.margin-left-30 {
+						margin-left: 15%;
+					}
+					.drop_menu {
+						align-items: center;
+						position: absolute;
+						right: 25px;
+						top: -2px;
+						.icon {
+							color: #7c98b6;
+							font-size: 16px;
+						}
+						.drop_menu_text {
+							color: #4885ed;
+							font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+							font-weight: 600;
+							font-size: 16px;
+						}
+						.icon1 {
+							color: #7c98b6;
+						}
+					}
+					.drop_menu1 {
+						cursor: pointer;
+						align-items: center;
+						.icon {
+							color: #7c98b6;
+							font-size: 16px;
+						}
+						.drop_menu_text {
+							color: #4885ed;
+							font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+							font-weight: 600;
+							font-size: 16px;
+						}
+						.icon1 {
+							color: #7c98b6;
+						}
+					}
+					.divider {
+						margin: 20px 0px;
+					}
+					.custom_panel {
+						box-shadow: unset;
+						.custom_panel_inner {
+							height: unset !important;
+							padding: 5px 0px;
+							&:hover {
+								background-color: unset;
+							}
+							.header_panel {
+								padding: 0px 15px;
+							}
+						}
+						.center_input {
+							align-items: baseline;
+							height: 55px;
+						}
+						.center_input_inner {
+							align-items: baseline;
+						}
+					}
+					.full_width1 {
+						width: 77%;
+					}
+					.full_width2 {
+						width: 77%;
+						height: 120px;
+					}
+					.open {
+						display: none;
+					}
+					.open1 {
+						display: none;
+					}
+					.contact_property_main {
+						background-color: #dfe2e6;
+						padding: 0 15px 15px;
+						margin-bottom: 10px;
+						.save {
+							background-color: #425b76;
+							border-color: #425b76;
+							color: #fff;
+							font-size: 12px;
+							line-height: 14px;
+							padding: 8px 16px;
+							font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+							font-weight: 400;
+							text-align: center;
+							height: 30px;
+						}
+						.cancel {
+							background-color: #eaf0f6;
+							border-color: #cbd6e2;
+							color: #506e91;
+							font-size: 12px;
+							line-height: 14px;
+							padding: 8px 16px;
+							font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+							font-weight: 400;
+							text-align: center;
+							height: 30px;
+						}
+					}
+					.privacy {
+						align-items: center;
+						.privacys {
+							width: 90%;
+							.privacy_inner {
+								align-items: center;
+								label {
+									font-weight: 600;
+								}
+								a {
+									font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+									font-weight: 600;
+									color: #4885ed;
+									font-size: 14px;
+									line-height: 24px;
+									.icon {
+										font-size: 14px;
+										margin: 4px 0px 0px 5px;
+										color: #7c98b6;
+									}
+								}
+							}
+							.privacy_note {
+								font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+								font-weight: 400;
+								font-size: 14px;
+								color: #33475b;
+								line-height: 24px;
+							}
+						}
+					}
+					.footer_button {
+						margin: 20px;
+						.customize {
+							background-color: #425b76;
+							border-color: #425b76;
+							color: #fff;
+							font-size: 12px;
+							line-height: 14px;
+							padding: 8px 16px;
+							font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+							font-weight: 400;
+							text-align: center;
+							height: 30px;
+						}
+						.preview {
+							background-color: #eaf0f6;
+							border-color: #cbd6e2;
+							color: #506e91;
+							font-size: 12px;
+							line-height: 14px;
+							padding: 8px 16px;
+							font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+							font-weight: 400;
+							text-align: center;
+							height: 30px;
+						}
+					}
+					.preview_1 {
+						background-color: #eaf0f6;
+						border-color: #cbd6e2;
+						color: #506e91;
+						font-size: 12px;
+						line-height: 14px;
+						padding: 8px 16px;
+						font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+						font-weight: 400;
+						text-align: center;
+						height: 36px;
+					}
+				}
+				.step-2 {
+					width: 100%;
+					max-width: 900PX;
+					.margin-top-10 {
+						margin-top: 10px
+					}
+					.stepper_header {
+						font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+						font-weight: 600;
+						color: #33475b;
+						margin-top: 0px;
+						font-size: 20px;
+						width: 100%;
+						align-items: center;
+						display: flex;
+						justify-content: center;
+					}
+					.headet_label {
+						justify-content: center;
+						padding: 0;
+					}
+					.baseline_main {
+						align-items: center;
+						display: flex;
+						flex-direction: row;
+						.baseline {
+							align-items: center;
+							.form-group {
+								margin-bottom: 0 !important;
+							}
+							.delete_icon {
+								color: #4885ed;
+								font-size: 24px;
+								cursor: pointer;
+							}
+						}
+					}
+					.time_width {
+						width: 100%;
+						min-width: 200px;
+					}
+					.margin-top-20 {
+						margin-top: -20px;
+					}
+					.margin-top-40 {
+						margin-top: -40px;
+					}
+					.link_label {
+						min-width: 50%;
+						overflow: hidden;
+						display: block;
+						padding: 0;
+						line-height: 20px;
+					}
+					.hr_input {
+						width: 45px;
+					}
+					.hr_text {
+						margin-left: 10px;
+					}
+					.delete_time_icon {
+						color: rgb(0, 164, 189);
+						font-size: 24px;
+						margin-top: 5px;
+						cursor: pointer;
+					}
+					.add_time {
+						font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+						font-weight: 600;
+						color: #4885ed;
+						font-size: 16px;
+						cursor: pointer;
+					}
+					.margin-left-30 {
+						margin-left: 15%;
+					}
+					.date_picker {
+						position: relative;
+						.inner_date_picker {
+							position: absolute;
+							right: 0px;
+							top: 0;
+						}
+					}
+				}
+			}
+		}
+		
+
+	}
+	.body2 {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+	.link_block {
+		max-width: 800px;
+		width: 100%;
+		padding: 24px;
+		.questions_input {
+			align-items: flex-end;
+			margin-top:5px;
+		}
+		.textarea_height {
+			height: 100px;
+		}
+		.copy_link {
+			background-color: #fff;
+			color: #3ea742;
+			border: 1px solid #3ea742;
+			border-radius: 3px;
+			font-size: 14px;
+			line-height: 16px;
+			padding: 8px 12px;
+			font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+			font-weight: 500;
+			height: 36px;
+			width: 100px;
+		}
+	}
+	.footer_main1 {
+		margin-top: 20px;
+		background-color: rgb(245, 248, 250);
+		padding: 20px 60px;
+		border-top: 1px solid rgb(203, 214, 226);
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		.save_btn {
+			background-color: #4885ed;
+			color: #fff;
+			border: 1px solid #4885ed;
+			border-radius: 3px;
+			font-size: 14px;
+			line-height: 16px;
+			padding: 11px 24px;
+			font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+			font-weight: 500;
+		}
+		.cancel_btn {
+			background-color: #fff8f6;
+			color: #4885ed;
+			border: 1px solid #4885ed;
+			border-radius: 3px;
+			font-size: 14px;
+			line-height: 16px;
+			padding: 11px 24px;
+			font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+			font-weight: 500;
+		}
+	}
+}
+}
+
+.alarm_icon {
+	position: absolute;
+    top: 7px;
+    left: 15px;
+    font-size: 22px;
+}
+
+.copy_link {
+	background-color: #fff;
+	color: #3ea742;
+	border: 1px solid #3ea742;
+	border-radius: 3px;
+	font-size: 14px;
+	line-height: 16px;
+	padding: 11px 24px;
+	font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+	font-weight: 500;
+
+}
+
+.footer_main {
+	margin-top: 20px;
+	background-color: rgb(245, 248, 250);
+	padding: 20px 60px;
+	border-top: 1px solid rgb(203, 214, 226);
+	position: sticky;
+	bottom: 0;
+	.save_btn {
+		background-color: #4885ed;
+		color: #fff;
+		border: 1px solid #4885ed;
+		border-radius: 3px;
+		font-size: 14px;
+		line-height: 16px;
+		padding: 11px 24px;
+		font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+		font-weight: 500;
+	}
+	.cancel_btn {
+		background-color: #fff8f6;
+		color: #4885ed;
+		border: 1px solid #4885ed;
+		border-radius: 3px;
+		font-size: 14px;
+		line-height: 16px;
+		padding: 11px 24px;
+		font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+		font-weight: 500;
+	}
+}
+
+.form-questions-delete-icon{
+	color: #4885ed;
+	line-height: 38px;
+	cursor: pointer;
+}
+
+.flex-space {
+	flex: 1 1 auto;
+}
+.hide{display:none;}
+.example-radio-group {
+	display: flex;
+	flex-direction: column;
+	margin: 15px 0;
+  }
+  
+  .example-radio-button {
+	margin: 5px;
+  }
+
+  ::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle , .mat-radio-outer-circle {
+	border-color: #4885ed;
+  }
+  
+  ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle{
+	background-color: #4885ed;
+  }
+
+@media only screen and (max-width: 767px) {
+	.layout {
+		padding: 0px 20px;
+		.body {
+			.stepper {
+				.stepper_body {
+					.step-2 {
+						.baseline_main {
+							align-items: flex-start;
+							display: flex;
+							flex-direction: column;
+							.baseline {
+								align-items: center;
+								margin-bottom: 10px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 599px) {
+	.layout {
+		padding: 0px 20px;
+		.body {
+			.stepper {
+				.stepper_body {
+					.step-1 {
+						.metting_details {
+							flex-direction: column;
+							align-items: flex-start;
+							.right_side {
+								margin-left: 0px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

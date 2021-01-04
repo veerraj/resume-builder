@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatModule } from '../mat.module';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { AuthGuard } from '../core/guard/auth.guard';
 
 
 const routes: Routes = [
@@ -18,12 +20,18 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     
+  },
+  {
+    path: 'home',
+    canActivate:[AuthGuard],
+    component: HomeComponent,
+    
   }
 ];
 
 
 @NgModule({
-  declarations: [RegisterComponent, LoginComponent],
+  declarations: [RegisterComponent, LoginComponent, HomeComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

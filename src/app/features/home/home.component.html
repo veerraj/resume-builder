@@ -1,0 +1,906 @@
+<!-- <div class="layout">
+    <div class="body" [ngStyle]="{'display': displaybody ? '' : 'none' }">
+      <mat-horizontal-stepper [linear]="true" class="stepper">
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Personal Info</ng-template>
+            <div class="stepper_body">
+              <h4 class="stepper_header">Details</h4>
+              <div class="step-1" fxLayout="column">
+                <div class="metting_details">
+  
+                  <div class="user_pic image-preview" fxLayout="column">
+                    <img [src]="previewUrl" />
+  
+                    <label for="imageUpload" class="img_text active_color">Select image
+                      <input type="file" name="imageUpload" id="imageUpload" class="hide" accept="image/*"
+                        (change)="fileProgress($event)"  />
+                    </label>
+                  </div>
+  
+                  <div class="right_side">
+                    <div class="form-group">
+                      <label class="form_control_label">Owner
+                        <div class="tooltip1">
+                          <span class="material-icons  info_icon">info </span>
+                          <span class="tooltiptext1">This name came from google.</span>
+                        </div>
+                      </label>
+                      <input disabled class="form-control" value="Clientify" placeholder="Clientify"
+                        formControlName="owner">
+                    </div>
+                    <div class="form-group">
+                      <label class="form_control_label">Meeting headline*
+                        <div class="tooltip1">
+                          <span class="material-icons  info_icon">info </span>
+                          <span class="tooltiptext1">This will display at the top of your link booking page.</span>
+                        </div>
+                      </label>
+                      <input type="text" [ngClass]="{'form-submitted': firstFormSubmitted}" formControlName="title"
+                        class="form-control" placeholder="Meet with my message">
+                    </div>
+                  </div>
+                </div>
+                <div fxLayout="column">
+                  <div class="" fxLayout="column">
+                    <div fxLayout="row">
+                      <div class="form-group">
+                        <label class="form_control_label">Duration*
+                          <div class="tooltip1">
+                            <span class="material-icons  info_icon">info </span>
+                            <span class="tooltiptext1">
+                              <div class="tooltip_header">Meeting length</div>
+                              <p class="tooltip_content">This is the actual length of meeting slots offered to invitees.
+                              </p>
+                              <p class="tooltip_content"><span>Example:</span> If you set the meeting length to 1 hour and
+                                your availability is from 9:00 AM to 12:00 PM, invitees will see meeting slots like:</p>
+                              <ul class="mb-0 pl-3">
+                                <li>9:00 AM–10:00 AM</li>
+                                <li>10:00 AM–11:00 AM</li>
+                              </ul>
+                            </span>
+                          </div>
+                        </label>
+                        <div fxLayout="column" fxLayoutGap="12px">
+                          <div fxLayout="row" fxLayoutGap="12px">
+                            <mat-button-toggle-group name="fontStyle" aria-label="Font Style"
+                              #group="matButtonToggleGroup" [value]="selectedDuration"
+                              (change)="onValChange(group.value)">
+                              <mat-button-toggle value="15" (change)="status = false">15 min</mat-button-toggle>
+                              <mat-button-toggle value="30" (change)="status = false">30 min</mat-button-toggle>
+                              <mat-button-toggle value="45" (change)="status = false">45 min</mat-button-toggle>
+                              <mat-button-toggle value="60" (change)="status = false">60 min</mat-button-toggle>
+                              <mat-button-toggle value="custom" (change)="status = !status">Custom</mat-button-toggle>
+                            </mat-button-toggle-group>
+                            <div fxLayout="row" *ngIf="status">
+                              <input type="number" class="form-control hr_input" min="5"
+                                oninput="this.value = Math.abs(this.value)" formControlName="duration">
+                              <label class="form_control_label hr_text">minutes</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+            <div class="footer_main" fxLayout="row">
+              <button mat-stroked-button class="cancel_btn" [routerLink]="['/meeting-list']"
+                routerLinkActive="router-link-active">Back to List</button>
+              <span class="flex-space"></span>
+              <button mat-stroked-button class="save_btn" matStepperNext (click)="onDetailsFinish()">Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Education</ng-template>
+            <div class="stepper_body">
+              <h4 class="stepper_header">Configuration</h4>
+              <div class="step-1" fxLayout="column">
+                <div fxLayout="column">
+  
+                  <div class="form-group">
+                    <label class="form_control_label">Location
+                      <div class="tooltip1">
+                        <span class="material-icons  info_icon">info </span>
+                        <span class="tooltiptext1">How will you connect with your invitee? Is there a dial-in number they
+                          should call? Will they visit your office?</span>
+                      </div>
+                    </label>
+                    <input type="email" class="form-control" [ngClass]="{'form-submitted': secondFormSubmitted}"
+                      formControlName="location" placeholder="Where will this meeting take place">
+                  </div>
+                  <div class="form-group">
+                    <label class="form_control_label">Invite description
+                      <div class="tooltip1">
+                        <span class="material-icons  info_icon">info </span>
+                        <span class="tooltiptext1">This description will appear in the invite when you're booked.</span>
+                      </div>
+                    </label>
+                    <textarea type="email" class="form-control" [ngClass]="{'form-submitted': secondFormSubmitted}"
+                      formControlName="description"
+                      placeholder="Additional information visible to invitees. For example description of event, your Google Meet link, etc."></textarea>
+                  </div>
+                  <mat-form-field class="full_width">
+                    <div class="form-group">
+                      <label class="form_control_label">Minimum notice time
+                        <div class="tooltip1">
+                          <span class="material-icons  info_icon">info </span>
+                          <span class="tooltiptext1">Minimum amount of time before a meeting can be booked</span>
+                        </div>
+                      </label>
+                      <mat-select class="form-control" formControlName="miniumnoticetime">
+                        <div class="drop"><input class="form-control" placeholder="search"
+                            [(ngModel)]="minimumNoticeTimeSearchText" [ngModelOptions]="{standalone: true}">
+                          <span class="material-icons search_icon">
+                            search
+                          </span></div>
+                        <mat-option [value]="data.value"
+                          *ngFor="let data of minimumNoticeTime | filterweeks : minimumNoticeTimeSearchText">{{data.id}}
+                        </mat-option>
+                      </mat-select>
+                    </div>
+                  </mat-form-field>
+                  <mat-form-field class="full_width">
+                    <div class="form-group">
+                      <label class="form_control_label">Buffer time
+                        <div class="tooltip1">
+                          <span class="material-icons  info_icon">info </span>
+                          <span class="tooltiptext1">Padding around your meetings you can't be booked for</span>
+                        </div>
+                      </label>
+                      <mat-select class="form-control" formControlName="buffertime">
+                        <div class="drop"><input class="form-control" placeholder="search"
+                            [(ngModel)]="bufferTimeSearchText" [ngModelOptions]="{standalone: true}">
+                          <span class="material-icons search_icon">
+                            search
+                          </span></div>
+                        <mat-option [value]="data.value" *ngFor="let data of bufferTime | filterweeks : bufferTimeSearchText">
+                          {{data.id}}</mat-option>
+                      </mat-select>
+                    </div>
+                  </mat-form-field>
+                  <mat-form-field class="full_width">
+                    <div class="form-group">
+                      <label class="form_control_label">The shortest notice to book you
+                        <div class="tooltip1">
+                          <span class="material-icons  info_icon">info </span>
+                          <span class="tooltiptext1">Prevent invitees from booking meetings last minute</span>
+                        </div>
+                      </label>
+                      <mat-select class="form-control" formControlName="bookingnotice">
+                        <div class="drop"><input class="form-control" placeholder="search"
+                            [(ngModel)]="shortestNoticeSearchText" [ngModelOptions]="{standalone: true}">
+                          <span class="material-icons search_icon">
+                            search
+                          </span></div>
+                        <mat-option [value]="data.value"
+                          *ngFor="let data of minimumBookingTime | filterweeks : shortestNoticeSearchText">{{data.id}}
+                        </mat-option>
+                      </mat-select>
+                    </div>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="footer_main" fxLayout="row">
+              <button mat-stroked-button class="cancel_btn" matStepperPrevious>Back</button>
+              <span class="flex-space"></span>
+              <button mat-stroked-button class="save_btn" matStepperNext (click)="onConfigurationFinish()">Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup">
+          <form [formGroup]="thirdFormGroup">
+            <ng-template matStepLabel>Expereince</ng-template>
+            <div class="stepper_body">
+              <h4 class="stepper_header">Availability</h4>
+              <div class="step-2" fxLayout="column">
+                <div class="" fxLayout="column">
+                  <h4 class="stepper_header">When are you available to take meetings?</h4>
+                  <label class="form_control_label headet_label">Choose the times of day you'll accept meeting (for
+                    example 9:00 AM to 12:00 PM and 1:00 PM to 5:00 PM).</label>
+                </div>
+                <div fxLayout="column">
+                  <mat-form-field class="full_width">
+                    <div class="form-group">
+                      <label class="form_control_label">Time zone</label>
+                      <mat-select class="form-control" formControlName="countrytimezone">
+                        <div class="drop"><input class="form-control" placeholder="search">
+                          <span class="material-icons search_icon">
+                            search
+                          </span></div>
+                        <mat-optgroup *ngFor="let timezone of timezones" [label]="timezone.zoneName"
+                          [disabled]="timezone.disabled">
+                          <mat-option *ngFor="let zoneTime of timezone.zoneTime" [value]="zoneTime">
+                            {{zoneTime}}
+                          </mat-option>
+                        </mat-optgroup>
+                      </mat-select>
+                    </div>
+                  </mat-form-field>
+                  <div fxLayout="column">
+                    <label class="form_control_label">Available times</label>
+                    <div fxLayout="column" fxLayoutGap="10px" formArrayName="AvailTimes">
+                      <div fxLayoutGap="10px" class="baseline_main"
+                        *ngFor="let control of AvailTimes.controls;let i=index" [formGroupName]="i">
+                        <div fxLayout="row" fxLayoutGap="10px" class="baseline">
+                          <mat-form-field class="full_width time_width">
+                            <div class="form-group">
+                              <mat-select class="form-control" formControlName="days">
+                                <div class="drop"><input class="form-control" placeholder="search"
+                                  [(ngModel)]="availableTimeSearchText[i]" [ngModelOptions]="{standalone: true}">
+                                  <span class="material-icons search_icon">
+                                    search
+                                  </span></div>
+                                <mat-option [value]="day" *ngFor="let day of days | filter:availableTimeSearchText[i]">{{day}}</mat-option>
+                              </mat-select>
+                            </div>
+                          </mat-form-field>
+                          <label class="form_control_label headet_label">from</label>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px" class="baseline">
+                          <mat-form-field class="full_width time_width">
+                            <div class="form-group">
+                              <span class="material-icons alarm_icon">
+                                alarm
+                              </span>
+                              <mat-select class="form-control pl-5" formControlName="from">
+                                <div class="drop"><input class="form-control" placeholder="search"
+                                  [(ngModel)]="availableTimeFromSearchText[i]" [ngModelOptions]="{standalone: true}">
+                                  <span class="material-icons search_icon">
+                                    search
+                                  </span></div>
+  
+                                <mat-option [value]="time" *ngFor="let time of fromtimes | filter:availableTimeFromSearchText[i]"
+                                  (click)="changeFromTimes(from.value, i)" #from>
+  
+                                  {{time}}</mat-option>
+                              </mat-select>
+                            </div>
+                          </mat-form-field>
+                          <label class="form_control_label headet_label">to</label>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px" class="baseline">
+                          <mat-form-field class="full_width time_width">
+                            <div class="form-group">
+                              <span class="material-icons alarm_icon">
+                                alarm
+                              </span>
+                              <mat-select class="form-control pl-5" formControlName="to">
+                                <div class="drop"><input class="form-control" placeholder="search"
+                                  [(ngModel)]="availableTimeToSearchText[i]" [ngModelOptions]="{standalone: true}">
+                                  <span class="material-icons search_icon">
+                                    search
+                                  </span></div>
+                                <mat-option [value]="time" *ngFor="let time of filtertotimes[i] || totimes | filter:availableTimeToSearchText[i]">{{time}}
+                                </mat-option>
+                              </mat-select>
+                            </div>
+                          </mat-form-field>
+                          <span class="material-icons delete_icon" (click)="deleteTimes(i)">delete_forever</span>
+                        </div>
+                      </div>
+  
+                      <span class="add_time" (click)="addTimes()">+ Add hours</span>
+                    </div>
+  
+                  </div>
+                  <div fxLayout="column">
+                    <label class="form_control_label">When a meeting can be scheduled</label>
+                    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                      formControlName="scheduled">
+                      <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season"
+                        (change)="radioChange(season)">
+                        {{season}}
+                      </mat-radio-button>
+                    </mat-radio-group>
+                    <div *ngIf="seasonsSelected == 'Over a period of rolling weeks'" fxLayout="row" fxLayoutGap="10px"
+                      fxLayout.xs="column" fxLayoutGap.xs="0px">
+  
+                      <mat-form-field class="full_width">
+                        <div class="form-group">
+                          <mat-select class="form-control" formControlName="periodrollingweeks">
+                            <div class="drop"><input class="form-control" placeholder="search"
+                                [(ngModel)]="rollingWeeksSearchText" [ngModelOptions]="{standalone: true}">
+                              <span class="material-icons search_icon">
+                                search
+                              </span></div>
+                            <mat-option [value]="rollingWeek.value"
+                              *ngFor="let rollingWeek of rollingWeeks | filterweeks : rollingWeeksSearchText">
+                              {{rollingWeek.id}}
+                            </mat-option>
+                          </mat-select>
+                        </div>
+                      </mat-form-field>
+                    </div>
+                    <div *ngIf="seasonsSelected == 'Custom date range'" fxLayout="row" fxLayoutGap="10px"
+                      fxLayout.xs="column" fxLayoutGap.xs="0px">
+                      <label class="form_control_label">From</label>
+                      <div class="date_picker">
+                        <input class="form-control" placeholder="Select From Date" [matDatepicker]="picker1"
+                        [min]="mindate"
+                          formControlName="fromdate">
+                        <div class="inner_date_picker">
+                          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                          <mat-datepicker #picker1></mat-datepicker>
+                        </div>
+                      </div>
+                      <label class="form_control_label">To</label>
+                      <div class="date_picker">
+                        <input class="form-control" placeholder="Select To Date" [matDatepicker]="picker2"
+                          [min]="mindate"
+                      
+                          formControlName="todate">
+                        <div class="inner_date_picker">
+                          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                          <mat-datepicker #picker2></mat-datepicker>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+            </div>
+  
+            <div class="footer_main" fxLayout="row">
+  
+              <button mat-stroked-button class="cancel_btn" matStepperPrevious>Back</button>
+              <span class="flex-space"></span>
+              <button mat-stroked-button class="save_btn" matStepperNext (click)="onAvailabiltyFinish()">Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="fourthFormGroup">
+          <form [formGroup]="fourthFormGroup">
+            <ng-template matStepLabel>Achievments</ng-template>
+            <div class="stepper_body">
+              <h4 class="stepper_header">Form Questions</h4>
+              <div class="step-1" fxLayout="column">
+                <div class="form-group">
+                  <label class="form_control_label margin-bottom-10">Ask prospects and customers a few qualifying
+                    questions as they are booking meetings with you.</label>
+                  <div fxLayout="column" fxLayoutGap="10px" *ngFor="let que of availQuestions;let i=index">
+                    <div class="questions_input" fxLayout="row" fxLayoutGap="20px">
+                      <input class="form-control full_width1" [placeholder]="que.fieldname">
+                      <mat-checkbox [disabled]="que.disable" (change)="modifyQues(i)" [checked]="que.required">Required
+                      </mat-checkbox>
+                      <span class="material-icons delete_icon form-questions-delete-icon" (click)="deleteQues(i)"
+                        [style.display]="que.disable ? 'none' : 'block'">delete_forever</span>
+                    </div>
+  
+                  </div>
+                </div>
+  
+                <div id="open1" class="open1 contact_property_main full_width1">
+                  <div class="form-group">
+                    <label class="form_control_label">Enter custom question</label>
+                    <textarea class="form-control" placeholder="Enter custom question"
+                      formControlName="question"></textarea>
+                  </div>
+                  <div fxLayout="row" fxLayoutGap="10px">
+                    <button mat-button class="save" (click)="addQuestion()">Save</button>
+                    <button mat-button class="cancel" (click)="closeSub1()">Cancel</button>
+                  </div>
+                </div>
+  
+                <div fxLayout="row" fxLayoutGap="30px" fxLayout.xs="column" fxLayoutGap.xs="10px">
+                  <div (click)="openSub1()" class="drop_menu1" fxLayout="row" fxLayoutGap="5px">
+                    <span class="material-icons icon"> add </span>
+                    <span class="drop_menu_text">Custom question</span>
+                  </div>
+                </div>
+                <mat-divider class="divider"></mat-divider>
+                <div class="privacy" fxLayout="row">
+                  <div class="privacys" fxLayout="column">
+                    <div class="privacy_inner" fxLayout="row" fxLayoutGap="0px">
+                      <label class="form_control_label">Privacy and consent (GDPR)</label>
+                      <a>Learn more<span class="material-icons icon">open_in_new</span></a>
+                    </div>
+                  </div>
+                  <mat-slide-toggle formControlName="gdpr"></mat-slide-toggle>
+                </div>
+              </div>
+            </div>
+            <div class="footer_main" fxLayout="row">
+              <button mat-stroked-button class="cancel_btn" matStepperPrevious>Back</button>
+              <span class="flex-space"></span>
+              <button mat-stroked-button class="save_btn" matStepperNext (click)="onQuestionsFinish()">Finish</button>
+            </div>
+          </form>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+    <div [ngStyle]="{'display': displaybody ? 'none' : '' }">
+      <div class="body2" fxLayout="column">
+        <mat-card class="link_block" fxLayout="column">
+          <div class="form-group">
+  
+            <div fxLayout="column" fxLayoutGap="10px">
+              <div fxLayout="column" fxLayoutGap="0px">
+                <label class="form_control_label">Shareable Link</label>
+                <div class="questions_input" fxLayout="row" fxLayoutGap="20px">
+                  <input class="form-control" value="https://99acres.pipedrive.com/scheduler/Y8jPepIY/meeting" disabled
+                    #copylink>
+                  <button mat-stroked-button class="copy_link" routerLinkActive="router-link-active"
+                    [cdkCopyToClipboard]="copylink.value">Copy</button>
+                </div>
+              </div>
+              <div fxLayout="column" fxLayoutGap="0px">
+                <label class="form_control_label">Embed Script</label>
+                <div class="questions_input" fxLayout="row" fxLayoutGap="20px">
+                  <textarea disabled class="form-control textarea_height" rows="2" #copyscript
+                    readonly="">&lt;iframe src="https://apps.clientify.net/code/dist/#/embed/23071" width="100%" height="610" frameBorder="0"&gt;&lt;/iframe&gt;</textarea>
+                  <button mat-stroked-button class="copy_link" routerLinkActive="router-link-active"
+                    [cdkCopyToClipboard]="copyscript.value">Copy</button>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </mat-card>
+        <div class="footer_main1" fxLayout="row">
+          <button mat-stroked-button class="cancel_btn" [routerLink]="['/meeting-list']"
+            routerLinkActive="router-link-active">Back to List</button>
+        </div>
+      </div>
+  
+    </div>
+  </div> -->
+  <div class="layout">
+    <div class="body" >
+      <mat-horizontal-stepper [linear]="true" class="stepper">
+        <mat-step >
+          <form >
+            <ng-template matStepLabel>Personal Info</ng-template>
+            <div class="stepper_body">
+              <h4 class="stepper_header">Details</h4>
+              <!-- <div class="step-1" fxLayout="column">
+                <div class="metting_details">
+  
+                  <div class="user_pic image-preview" fxLayout="column">
+                    <img [src]="previewUrl" />
+  
+                    <label for="imageUpload" class="img_text active_color">Select image
+                      <input type="file" name="imageUpload" id="imageUpload" class="hide" accept="image/*"
+                        (change)="fileProgress($event)"  />
+                    </label>
+                  </div>
+  
+                  <div class="right_side">
+                    <div class="form-group">
+                      <label class="form_control_label">Owner
+                        <div class="tooltip1">
+                          <span class="material-icons  info_icon">info </span>
+                          <span class="tooltiptext1">This name came from google.</span>
+                        </div>
+                      </label>
+                      <input disabled class="form-control" value="Clientify" placeholder="Clientify"
+                        formControlName="owner">
+                    </div>
+                    <div class="form-group">
+                      <label class="form_control_label">Meeting headline*
+                        <div class="tooltip1">
+                          <span class="material-icons  info_icon">info </span>
+                          <span class="tooltiptext1">This will display at the top of your link booking page.</span>
+                        </div>
+                      </label>
+                      <input type="text" [ngClass]="{'form-submitted': firstFormSubmitted}" formControlName="title"
+                        class="form-control" placeholder="Meet with my message">
+                    </div>
+                  </div>
+                </div>
+                <div fxLayout="column">
+                  <div class="" fxLayout="column">
+                    <div fxLayout="row">
+                      <div class="form-group">
+                        <label class="form_control_label">Duration*
+                          <div class="tooltip1">
+                            <span class="material-icons  info_icon">info </span>
+                            <span class="tooltiptext1">
+                              <div class="tooltip_header">Meeting length</div>
+                              <p class="tooltip_content">This is the actual length of meeting slots offered to invitees.
+                              </p>
+                              <p class="tooltip_content"><span>Example:</span> If you set the meeting length to 1 hour and
+                                your availability is from 9:00 AM to 12:00 PM, invitees will see meeting slots like:</p>
+                              <ul class="mb-0 pl-3">
+                                <li>9:00 AM–10:00 AM</li>
+                                <li>10:00 AM–11:00 AM</li>
+                              </ul>
+                            </span>
+                          </div>
+                        </label>
+                        <div fxLayout="column" fxLayoutGap="12px">
+                          <div fxLayout="row" fxLayoutGap="12px">
+                            <mat-button-toggle-group name="fontStyle" aria-label="Font Style"
+                              #group="matButtonToggleGroup" [value]="selectedDuration"
+                              (change)="onValChange(group.value)">
+                              <mat-button-toggle value="15" (change)="status = false">15 min</mat-button-toggle>
+                              <mat-button-toggle value="30" (change)="status = false">30 min</mat-button-toggle>
+                              <mat-button-toggle value="45" (change)="status = false">45 min</mat-button-toggle>
+                              <mat-button-toggle value="60" (change)="status = false">60 min</mat-button-toggle>
+                              <mat-button-toggle value="custom" (change)="status = !status">Custom</mat-button-toggle>
+                            </mat-button-toggle-group>
+                            <div fxLayout="row" *ngIf="status">
+                              <input type="number" class="form-control hr_input" min="5"
+                                oninput="this.value = Math.abs(this.value)" formControlName="duration">
+                              <label class="form_control_label hr_text">minutes</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+  
+            </div>
+            <div class="footer_main" fxLayout="row">
+              <button mat-stroked-button class="cancel_btn" [routerLink]="['/meeting-list']"
+                routerLinkActive="router-link-active">Back to List</button>
+              <span class="flex-space"></span>
+              <button mat-stroked-button class="save_btn" matStepperNext >Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step >
+          <form >
+            <ng-template matStepLabel>Education</ng-template>
+            <div class="stepper_body">
+              <h4 class="stepper_header">Configuration</h4>
+              <div class="step-1" fxLayout="column">
+                <!-- <div fxLayout="column">
+  
+                  <div class="form-group">
+                    <label class="form_control_label">Location
+                      <div class="tooltip1">
+                        <span class="material-icons  info_icon">info </span>
+                        <span class="tooltiptext1">How will you connect with your invitee? Is there a dial-in number they
+                          should call? Will they visit your office?</span>
+                      </div>
+                    </label>
+                    <input type="email" class="form-control" [ngClass]="{'form-submitted': secondFormSubmitted}"
+                      formControlName="location" placeholder="Where will this meeting take place">
+                  </div>
+                  <div class="form-group">
+                    <label class="form_control_label">Invite description
+                      <div class="tooltip1">
+                        <span class="material-icons  info_icon">info </span>
+                        <span class="tooltiptext1">This description will appear in the invite when you're booked.</span>
+                      </div>
+                    </label>
+                    <textarea type="email" class="form-control" [ngClass]="{'form-submitted': secondFormSubmitted}"
+                      formControlName="description"
+                      placeholder="Additional information visible to invitees. For example description of event, your Google Meet link, etc."></textarea>
+                  </div>
+                  <mat-form-field class="full_width">
+                    <div class="form-group">
+                      <label class="form_control_label">Minimum notice time
+                        <div class="tooltip1">
+                          <span class="material-icons  info_icon">info </span>
+                          <span class="tooltiptext1">Minimum amount of time before a meeting can be booked</span>
+                        </div>
+                      </label>
+                      <mat-select class="form-control" formControlName="miniumnoticetime">
+                        <div class="drop"><input class="form-control" placeholder="search"
+                            [(ngModel)]="minimumNoticeTimeSearchText" [ngModelOptions]="{standalone: true}">
+                          <span class="material-icons search_icon">
+                            search
+                          </span></div>
+                        <mat-option [value]="data.value"
+                          *ngFor="let data of minimumNoticeTime | filterweeks : minimumNoticeTimeSearchText">{{data.id}}
+                        </mat-option>
+                      </mat-select>
+                    </div>
+                  </mat-form-field>
+                  <mat-form-field class="full_width">
+                    <div class="form-group">
+                      <label class="form_control_label">Buffer time
+                        <div class="tooltip1">
+                          <span class="material-icons  info_icon">info </span>
+                          <span class="tooltiptext1">Padding around your meetings you can't be booked for</span>
+                        </div>
+                      </label>
+                      <mat-select class="form-control" formControlName="buffertime">
+                        <div class="drop"><input class="form-control" placeholder="search"
+                            [(ngModel)]="bufferTimeSearchText" [ngModelOptions]="{standalone: true}">
+                          <span class="material-icons search_icon">
+                            search
+                          </span></div>
+                        <mat-option [value]="data.value" *ngFor="let data of bufferTime | filterweeks : bufferTimeSearchText">
+                          {{data.id}}</mat-option>
+                      </mat-select>
+                    </div>
+                  </mat-form-field>
+                  <mat-form-field class="full_width">
+                    <div class="form-group">
+                      <label class="form_control_label">The shortest notice to book you
+                        <div class="tooltip1">
+                          <span class="material-icons  info_icon">info </span>
+                          <span class="tooltiptext1">Prevent invitees from booking meetings last minute</span>
+                        </div>
+                      </label>
+                      <mat-select class="form-control" formControlName="bookingnotice">
+                        <div class="drop"><input class="form-control" placeholder="search"
+                            [(ngModel)]="shortestNoticeSearchText" [ngModelOptions]="{standalone: true}">
+                          <span class="material-icons search_icon">
+                            search
+                          </span></div>
+                        <mat-option [value]="data.value"
+                          *ngFor="let data of minimumBookingTime | filterweeks : shortestNoticeSearchText">{{data.id}}
+                        </mat-option>
+                      </mat-select>
+                    </div>
+                  </mat-form-field>
+                </div> -->
+              </div>
+            </div>
+            <div class="footer_main" fxLayout="row">
+              <button mat-stroked-button class="cancel_btn" matStepperPrevious>Back</button>
+              <span class="flex-space"></span>
+              <button mat-stroked-button class="save_btn" matStepperNext >Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step >
+          <form >
+            <ng-template matStepLabel>Expereince</ng-template>
+            <div class="stepper_body">
+              <h4 class="stepper_header">Availability</h4>
+              <!-- <div class="step-2" fxLayout="column">
+                <div class="" fxLayout="column">
+                  <h4 class="stepper_header">When are you available to take meetings?</h4>
+                  <label class="form_control_label headet_label">Choose the times of day you'll accept meeting (for
+                    example 9:00 AM to 12:00 PM and 1:00 PM to 5:00 PM).</label>
+                </div>
+                <div fxLayout="column">
+                  <mat-form-field class="full_width">
+                    <div class="form-group">
+                      <label class="form_control_label">Time zone</label>
+                      <mat-select class="form-control" formControlName="countrytimezone">
+                        <div class="drop"><input class="form-control" placeholder="search">
+                          <span class="material-icons search_icon">
+                            search
+                          </span></div>
+                        <mat-optgroup *ngFor="let timezone of timezones" [label]="timezone.zoneName"
+                          [disabled]="timezone.disabled">
+                          <mat-option *ngFor="let zoneTime of timezone.zoneTime" [value]="zoneTime">
+                            {{zoneTime}}
+                          </mat-option>
+                        </mat-optgroup>
+                      </mat-select>
+                    </div>
+                  </mat-form-field>
+                  <div fxLayout="column">
+                    <label class="form_control_label">Available times</label>
+                    <div fxLayout="column" fxLayoutGap="10px" formArrayName="AvailTimes">
+                      <div fxLayoutGap="10px" class="baseline_main"
+                        *ngFor="let control of AvailTimes.controls;let i=index" [formGroupName]="i">
+                        <div fxLayout="row" fxLayoutGap="10px" class="baseline">
+                          <mat-form-field class="full_width time_width">
+                            <div class="form-group">
+                              <mat-select class="form-control" formControlName="days">
+                                <div class="drop"><input class="form-control" placeholder="search"
+                                  [(ngModel)]="availableTimeSearchText[i]" [ngModelOptions]="{standalone: true}">
+                                  <span class="material-icons search_icon">
+                                    search
+                                  </span></div>
+                                <mat-option [value]="day" *ngFor="let day of days | filter:availableTimeSearchText[i]">{{day}}</mat-option>
+                              </mat-select>
+                            </div>
+                          </mat-form-field>
+                          <label class="form_control_label headet_label">from</label>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px" class="baseline">
+                          <mat-form-field class="full_width time_width">
+                            <div class="form-group">
+                              <span class="material-icons alarm_icon">
+                                alarm
+                              </span>
+                              <mat-select class="form-control pl-5" formControlName="from">
+                                <div class="drop"><input class="form-control" placeholder="search"
+                                  [(ngModel)]="availableTimeFromSearchText[i]" [ngModelOptions]="{standalone: true}">
+                                  <span class="material-icons search_icon">
+                                    search
+                                  </span></div>
+  
+                                <mat-option [value]="time" *ngFor="let time of fromtimes | filter:availableTimeFromSearchText[i]"
+                                  (click)="changeFromTimes(from.value, i)" #from>
+  
+                                  {{time}}</mat-option>
+                              </mat-select>
+                            </div>
+                          </mat-form-field>
+                          <label class="form_control_label headet_label">to</label>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px" class="baseline">
+                          <mat-form-field class="full_width time_width">
+                            <div class="form-group">
+                              <span class="material-icons alarm_icon">
+                                alarm
+                              </span>
+                              <mat-select class="form-control pl-5" formControlName="to">
+                                <div class="drop"><input class="form-control" placeholder="search"
+                                  [(ngModel)]="availableTimeToSearchText[i]" [ngModelOptions]="{standalone: true}">
+                                  <span class="material-icons search_icon">
+                                    search
+                                  </span></div>
+                                <mat-option [value]="time" *ngFor="let time of filtertotimes[i] || totimes | filter:availableTimeToSearchText[i]">{{time}}
+                                </mat-option>
+                              </mat-select>
+                            </div>
+                          </mat-form-field>
+                          <span class="material-icons delete_icon" (click)="deleteTimes(i)">delete_forever</span>
+                        </div>
+                      </div>
+  
+                      <span class="add_time" (click)="addTimes()">+ Add hours</span>
+                    </div>
+  
+                  </div>
+                  <div fxLayout="column">
+                    <label class="form_control_label">When a meeting can be scheduled</label>
+                    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                      formControlName="scheduled">
+                      <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season"
+                        (change)="radioChange(season)">
+                        {{season}}
+                      </mat-radio-button>
+                    </mat-radio-group>
+                    <div *ngIf="seasonsSelected == 'Over a period of rolling weeks'" fxLayout="row" fxLayoutGap="10px"
+                      fxLayout.xs="column" fxLayoutGap.xs="0px">
+  
+                      <mat-form-field class="full_width">
+                        <div class="form-group">
+                          <mat-select class="form-control" formControlName="periodrollingweeks">
+                            <div class="drop"><input class="form-control" placeholder="search"
+                                [(ngModel)]="rollingWeeksSearchText" [ngModelOptions]="{standalone: true}">
+                              <span class="material-icons search_icon">
+                                search
+                              </span></div>
+                            <mat-option [value]="rollingWeek.value"
+                              *ngFor="let rollingWeek of rollingWeeks | filterweeks : rollingWeeksSearchText">
+                              {{rollingWeek.id}}
+                            </mat-option>
+                          </mat-select>
+                        </div>
+                      </mat-form-field>
+                    </div>
+                    <div *ngIf="seasonsSelected == 'Custom date range'" fxLayout="row" fxLayoutGap="10px"
+                      fxLayout.xs="column" fxLayoutGap.xs="0px">
+                      <label class="form_control_label">From</label>
+                      <div class="date_picker">
+                        <input class="form-control" placeholder="Select From Date" [matDatepicker]="picker1"
+                        [min]="mindate"
+                          formControlName="fromdate">
+                        <div class="inner_date_picker">
+                          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                          <mat-datepicker #picker1></mat-datepicker>
+                        </div>
+                      </div>
+                      <label class="form_control_label">To</label>
+                      <div class="date_picker">
+                        <input class="form-control" placeholder="Select To Date" [matDatepicker]="picker2"
+                          [min]="mindate"
+                      
+                          formControlName="todate">
+                        <div class="inner_date_picker">
+                          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                          <mat-datepicker #picker2></mat-datepicker>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+              </div> -->
+            </div>
+  
+            <div class="footer_main" fxLayout="row">
+  
+              <button mat-stroked-button class="cancel_btn" matStepperPrevious>Back</button>
+              <span class="flex-space"></span>
+              <button mat-stroked-button class="save_btn" matStepperNext >Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step >
+          <form >
+            <ng-template matStepLabel>Achievments</ng-template>
+            <div class="stepper_body">
+              <h4 class="stepper_header">Form Questions</h4>
+              <!-- <div class="step-1" fxLayout="column">
+                <div class="form-group">
+                  <label class="form_control_label margin-bottom-10">Ask prospects and customers a few qualifying
+                    questions as they are booking meetings with you.</label>
+                  <div fxLayout="column" fxLayoutGap="10px" *ngFor="let que of availQuestions;let i=index">
+                    <div class="questions_input" fxLayout="row" fxLayoutGap="20px">
+                      <input class="form-control full_width1" [placeholder]="que.fieldname">
+                      <mat-checkbox [disabled]="que.disable" (change)="modifyQues(i)" [checked]="que.required">Required
+                      </mat-checkbox>
+                      <span class="material-icons delete_icon form-questions-delete-icon" (click)="deleteQues(i)"
+                        [style.display]="que.disable ? 'none' : 'block'">delete_forever</span>
+                    </div>
+  
+                  </div>
+                </div>
+  
+                <div id="open1" class="open1 contact_property_main full_width1">
+                  <div class="form-group">
+                    <label class="form_control_label">Enter custom question</label>
+                    <textarea class="form-control" placeholder="Enter custom question"
+                      formControlName="question"></textarea>
+                  </div>
+                  <div fxLayout="row" fxLayoutGap="10px">
+                    <button mat-button class="save" (click)="addQuestion()">Save</button>
+                    <button mat-button class="cancel" (click)="closeSub1()">Cancel</button>
+                  </div>
+                </div>
+  
+                <div fxLayout="row" fxLayoutGap="30px" fxLayout.xs="column" fxLayoutGap.xs="10px">
+                  <div (click)="openSub1()" class="drop_menu1" fxLayout="row" fxLayoutGap="5px">
+                    <span class="material-icons icon"> add </span>
+                    <span class="drop_menu_text">Custom question</span>
+                  </div>
+                </div>
+                <mat-divider class="divider"></mat-divider>
+                <div class="privacy" fxLayout="row">
+                  <div class="privacys" fxLayout="column">
+                    <div class="privacy_inner" fxLayout="row" fxLayoutGap="0px">
+                      <label class="form_control_label">Privacy and consent (GDPR)</label>
+                      <a>Learn more<span class="material-icons icon">open_in_new</span></a>
+                    </div>
+                  </div>
+                  <mat-slide-toggle formControlName="gdpr"></mat-slide-toggle>
+                </div>
+              </div> -->
+            </div>
+            <div class="footer_main" fxLayout="row">
+              <button mat-stroked-button class="cancel_btn" matStepperPrevious>Back</button>
+              <span class="flex-space"></span>
+              <button mat-stroked-button class="save_btn" matStepperNext >Finish</button>
+            </div>
+          </form>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+    <div >
+      <div class="body2" fxLayout="column">
+        <mat-card class="link_block" fxLayout="column">
+          <div class="form-group">
+  
+            <!-- <div fxLayout="column" fxLayoutGap="10px">
+              <div fxLayout="column" fxLayoutGap="0px">
+                <label class="form_control_label">Shareable Link</label>
+                <div class="questions_input" fxLayout="row" fxLayoutGap="20px">
+                  <input class="form-control" value="https://99acres.pipedrive.com/scheduler/Y8jPepIY/meeting" disabled
+                    #copylink>
+                  <button mat-stroked-button class="copy_link" routerLinkActive="router-link-active"
+                    [cdkCopyToClipboard]="copylink.value">Copy</button>
+                </div>
+              </div>
+              <div fxLayout="column" fxLayoutGap="0px">
+                <label class="form_control_label">Embed Script</label>
+                <div class="questions_input" fxLayout="row" fxLayoutGap="20px">
+                  <textarea disabled class="form-control textarea_height" rows="2" #copyscript
+                    readonly="">&lt;iframe src="https://apps.clientify.net/code/dist/#/embed/23071" width="100%" height="610" frameBorder="0"&gt;&lt;/iframe&gt;</textarea>
+                  <button mat-stroked-button class="copy_link" routerLinkActive="router-link-active"
+                    [cdkCopyToClipboard]="copyscript.value">Copy</button>
+                </div>
+              </div>
+            </div> -->
+          </div>
+  
+        </mat-card>
+        <div class="footer_main1" fxLayout="row">
+          <button mat-stroked-button class="cancel_btn" 
+            >Back to List</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
